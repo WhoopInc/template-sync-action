@@ -21,7 +21,7 @@ SOURCE_REPO_PREFIX="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@${SOURCE_REPO_HOSTNA
 # Forward to /dev/null to swallow the output of the private key
 if [[ -n "${SSH_PRIVATE_KEY_SRC}" ]] &>/dev/null; then
   SRC_SSH_FILE_DIR="/tmp/.ssh"
-  SRC_SSH_PRIVATEKEY_FILE_NAME="id_rsa_actions_template_sync"
+  SRC_SSH_PRIVATEKEY_FILE_NAME="id_rsa_template-sync-action"
   export SRC_SSH_PRIVATEKEY_ABS_PATH="${SRC_SSH_FILE_DIR}/${SRC_SSH_PRIVATEKEY_FILE_NAME}"
   echo "::debug::We are using SSH within a private source repo"
   mkdir -p "${SRC_SSH_FILE_DIR}"
@@ -35,7 +35,7 @@ export SOURCE_REPO="${SOURCE_REPO_PREFIX}${SOURCE_REPO_PATH}"
 
 echo "::group::git init"
 echo "set git global configuration"
-git config --global user.email "github-action@actions-template-sync.noreply.${SOURCE_REPO_HOSTNAME}"
+git config --global user.email "github-action@template-sync-action.noreply.${SOURCE_REPO_HOSTNAME}"
 git config --global user.name "${GITHUB_ACTOR}"
 git config --global pull.rebase false
 git config --global --add safe.directory /github/workspace
